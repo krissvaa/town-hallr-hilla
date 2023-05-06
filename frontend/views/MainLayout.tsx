@@ -30,49 +30,49 @@ export default function MenuOnLeftLayout() {
 
   return (
     <AppLayout className="block h-full" primarySection="drawer">
-      <header slot="drawer">
-        <h1 className="text-l m-0">My App</h1>
-      </header>
-      <Scroller slot="drawer" scroll-direction="vertical">
-        <nav>
-          {menuRoutes.filter(hasAccess).map(({ path, handle: { icon, title } }) => (
-            <NavLink
-              className={({ isActive }) => `${css.navlink} ${isActive ? css.navlink_active : ''}`}
-              key={path}
-              to={path}
-            >
-              {({ isActive }) => (
-                <Item key={path} selected={isActive}>
-                  <span
-                    className={css.navicon}
-                    style={{ '--mask-image': `url('line-awesome/svg/${icon}.svg')` } as any}
-                    aria-hidden="true"
-                  ></span>
-                  {title}
-                </Item>
-              )}
-            </NavLink>
-          ))}
-        </nav>
-      </Scroller>
-      <footer slot="drawer">
-        {state.user ? (
-          <>
-            <div className="flex items-center gap-m">
-              <Avatar theme="xsmall" img={state.user.profilePictureUrl} name={state.user.name} />
-              {state.user.name}
-            </div>
-            <Button onClick={async () => logout(unauthenticate)}>Sign out</Button>
-          </>
-        ) : (
-          <a href="/login">Sign in</a>
-        )}
-      </footer>
+      {/*<header slot="drawer">*/}
+      {/*  <h1 className="text-l m-0">My App</h1>*/}
+      {/*</header>*/}
+      {/*<Scroller slot="drawer" scroll-direction="vertical">*/}
+      {/*  <nav>*/}
+      {/*    {menuRoutes.filter(hasAccess).map(({ path, handle: { icon, title } }) => (*/}
+      {/*      <NavLink*/}
+      {/*        className={({ isActive }) => `${css.navlink} ${isActive ? css.navlink_active : ''}`}*/}
+      {/*        key={path}*/}
+      {/*        to={path}*/}
+      {/*      >*/}
+      {/*        {({ isActive }) => (*/}
+      {/*          <Item key={path} selected={isActive}>*/}
+      {/*            <span*/}
+      {/*              className={css.navicon}*/}
+      {/*              style={{ '--mask-image': `url('line-awesome/svg/${icon}.svg')` } as any}*/}
+      {/*              aria-hidden="true"*/}
+      {/*            ></span>*/}
+      {/*            {title}*/}
+      {/*          </Item>*/}
+      {/*        )}*/}
+      {/*      </NavLink>*/}
+      {/*    ))}*/}
+      {/*  </nav>*/}
+      {/*</Scroller>*/}
+      {/*<footer slot="drawer">*/}
+      {/*  {state.user ? (*/}
+      {/*    <>*/}
+      {/*      <div className="flex items-center gap-m">*/}
+      {/*        <Avatar theme="xsmall" img={state.user.profilePictureUrl} name={state.user.name} />*/}
+      {/*        {state.user.name}*/}
+      {/*      </div>*/}
+      {/*      <Button onClick={async () => logout(unauthenticate)}>Sign out</Button>*/}
+      {/*    </>*/}
+      {/*  ) : (*/}
+      {/*    <a href="/login">Sign in</a>*/}
+      {/*  )}*/}
+      {/*</footer>*/}
 
-      <DrawerToggle slot="navbar" aria-label="Menu toggle"></DrawerToggle>
-      <h2 slot="navbar" className="text-l m-0">
-        {currentTitle}
-      </h2>
+      {/*<DrawerToggle slot="navbar" aria-label="Menu toggle"></DrawerToggle>*/}
+      {/*<h2 slot="navbar" className="text-l m-0">*/}
+      {/*  {currentTitle}*/}
+      {/*</h2>*/}
 
       <Suspense fallback={<Placeholder />}>
         <Outlet />

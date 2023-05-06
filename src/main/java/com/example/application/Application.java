@@ -1,9 +1,15 @@
 package com.example.application;
 
+import com.example.application.data.generator.DataLoader;
+import com.example.application.data.service.TopicRepository;
+import com.example.application.data.service.UpVoteRepository;
 import com.example.application.data.service.UserRepository;
+import com.example.application.data.service.VaadinerRepository;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
 import javax.sql.DataSource;
+
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.sql.init.SqlDataSourceScriptDatabaseInitializer;
@@ -38,5 +44,11 @@ public class Application implements AppShellConfigurator {
                 return false;
             }
         };
+    }
+
+    @Bean
+    public CommandLineRunner loadData(TopicRepository topicRepository, UpVoteRepository upVoteRepository,
+            VaadinerRepository vaadinerRepository) {
+        return args -> new DataLoader(topicRepository, upVoteRepository, vaadinerRepository);
     }
 }
