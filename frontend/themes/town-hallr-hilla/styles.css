@@ -1,0 +1,121 @@
+body {
+    background-color: var(--lumo-contrast-5pct);
+}
+
+.main {
+    background-color: white;
+
+    border-radius: 10px;
+    max-width: 1150px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin {
+    background-color: white;
+    border: 2px solid var(--lumo-error-color-50pct);
+    border-radius: 10px;
+    max-width: 1150px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.topic-content {
+    border-top: 1px solid var(--lumo-contrast-10pct);
+    width: 100%;
+}
+
+.topic-content-title {
+    margin: auto;
+    font-weight: bold;
+}
+
+.topic-layout, .topic-form {
+    padding: 20px 40px 20px 40px;
+    width: 100%;
+}
+
+.topic-form {
+    border-left: 1px solid var(--lumo-contrast-10pct);
+    max-width: 400px;
+    /*justify-items: center;*/
+    align-items: center;
+    width: 100%;
+}
+
+.topic-form > * {
+    width: 100%;
+}
+
+.topic-form > vaadin-button {
+    width: auto;
+    align-self: end;
+}
+
+
+.topic-item {
+    background-color: var(--lumo-contrast-5pct);
+    border-radius: 5px;
+    padding: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+.topic-item-list > div .topic-item {
+    margin-bottom: 10px;
+}
+
+.topic-item-list > div:last-child .topic-item {
+    margin-bottom: 0;
+}
+
+.event-header > h1 {
+    margin: auto;
+}
+
+.topic-item-description {
+    padding-top: 10px;
+}
+
+.up-vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    height: 50px;
+    /*border: 1px solid var(--lumo-tertiary-text-color);*/
+    border-radius: 15px;
+    color: var(--lumo-tertiary-text-color);
+
+    font-weight: bold;
+}
+
+.up-vote:hover {
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.07);
+    cursor: pointer;
+}
+
+.up-vote.active {
+    /*border: 1px solid var(--lumo-primary-color);*/
+    color: var(--lumo-primary-color);
+}
+
+.up-vote > svg {
+    width: 32px;
+    min-height: 32px;
+    margin-top: 15px;
+}
+
+.up-vote > span {
+    padding-bottom: 5px;
+    top: -10px;
+    position: relative;
+}
+
+.comment-indicator {
+    text-align: center;
+}

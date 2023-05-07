@@ -1,4 +1,4 @@
-package com.example.application.data.generator;
+package com.example.application.generator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ import com.example.application.data.entity.Status;
 import com.example.application.data.entity.Topic;
 import com.example.application.data.entity.UpVote;
 import com.example.application.data.entity.Vaadiner;
-import com.example.application.data.service.TopicRepository;
-import com.example.application.data.service.UpVoteRepository;
-import com.example.application.data.service.VaadinerRepository;
+import com.example.application.service.topic.TopicRepository;
+import com.example.application.service.topic.UpVoteRepository;
+import com.example.application.service.user.VaadinerRepository;
 
 
 public class DataLoader {

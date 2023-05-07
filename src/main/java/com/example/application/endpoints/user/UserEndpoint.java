@@ -1,4 +1,4 @@
-package com.example.application.data.endpoint;
+package com.example.application.endpoints.user;
 
 import com.example.application.data.entity.User;
 import com.example.application.security.AuthenticatedUser;

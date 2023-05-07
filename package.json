@@ -32,6 +32,7 @@
     "lit": "2.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
     "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
@@ -129,6 +130,6 @@
       "workbox-core": "6.5.4",
       "workbox-precaching": "6.5.4"
     },
-    "hash": "21b702678453b85ef925fe862f6c9b59dd2cea30ccb03be7d810f1e02e931bb1"
+    "hash": "6cfe78bf0f4b1204ae79ee12cb6fc7a45cd871c446792e6411d0d37ea113c582"
   }
 }

@@ -1,16 +1,16 @@
 package com.example.application.endpoints.topic;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.example.application.data.dto.TopicListItem;
+import com.example.application.data.entity.Category;
 import com.example.application.data.entity.Topic;
-import com.example.application.data.service.TopicService;
+import com.example.application.service.topic.TopicService;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-
 import dev.hilla.Endpoint;
 import dev.hilla.Nonnull;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 @Endpoint
@@ -31,5 +31,11 @@ public class TopicEndpoint {
 
     public Topic createTopic(@Nonnull Topic topic) {
         return topicService.save(topic);
+    }
+
+    @Nonnull
+    @AnonymousAllowed
+    public List<@Nonnull Category> getCategories() {
+        return Arrays.asList(Category.values());
     }
 }

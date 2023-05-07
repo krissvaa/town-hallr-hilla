@@ -1,10 +1,10 @@
 package com.example.application;
 
-import com.example.application.data.generator.DataLoader;
-import com.example.application.data.service.TopicRepository;
-import com.example.application.data.service.UpVoteRepository;
-import com.example.application.data.service.UserRepository;
-import com.example.application.data.service.VaadinerRepository;
+import com.example.application.generator.DataLoader;
+import com.example.application.service.topic.TopicRepository;
+import com.example.application.service.topic.UpVoteRepository;
+import com.example.application.service.user.UserRepository;
+import com.example.application.service.user.VaadinerRepository;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
 import javax.sql.DataSource;

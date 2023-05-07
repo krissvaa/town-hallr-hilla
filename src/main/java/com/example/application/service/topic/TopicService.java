@@ -1,25 +1,18 @@
-package com.example.application.data.service;
+package com.example.application.service.topic;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
+import com.example.application.data.dto.TopicListItem;
+import com.example.application.data.entity.*;
+import com.example.application.service.user.VaadinerRepository;
+import com.vaadin.flow.server.VaadinRequest;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.application.data.dto.TopicListItem;
-import com.example.application.data.entity.Category;
-import com.example.application.data.entity.Comment;
-import com.example.application.data.entity.Status;
-import com.example.application.data.entity.Topic;
-import com.example.application.data.entity.UpVote;
-import com.example.application.data.entity.Vaadiner;
-import com.vaadin.flow.server.VaadinRequest;
-
-import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -61,12 +54,12 @@ public class TopicService {
                 return category.get().equals(topic.getCategory());
             }
             return true;
-        }).map(this::topicEntityToListItem).collect(Collectors.toList());
+        }).map(this::topicEntityToListItem).toList();
     }
 
     public List<TopicListItem> getAllTopicsSimplified() {
         var topics = topicRepository.findAll();
-        return topics.stream().map(this::topicEntityToListItem).collect(Collectors.toList());
+        return topics.stream().map(this::topicEntityToListItem).toList();
     }
 
     private TopicListItem topicEntityToListItem(Topic topic) {
@@ -93,21 +86,20 @@ public class TopicService {
 
     public Topic submitNew(Topic topic, Vaadiner submitter) {
         // refresh the Vaadiner from the DB
-        Vaadiner refreshedVaadiner = null;
         Optional<Vaadiner> optionalVaadiner = vaadinerRepository.findById(submitter.getId());
         if (optionalVaadiner.isEmpty()) {
             throw new EntityNotFoundException("Vaadiner not found");
         }
 
         topic.setStatus(Status.NEW);
-        topic.setSubmitter(refreshedVaadiner);
+        topic.setSubmitter(optionalVaadiner.get());
 
         // save the topic
         Topic savedTopic = save(topic);
 
         // update Vaadiner
-        refreshedVaadiner.getSubmittedTopics().add(savedTopic);
-        vaadinerRepository.save(refreshedVaadiner);
+        optionalVaadiner.get().getSubmittedTopics().add(savedTopic);
+        vaadinerRepository.save(optionalVaadiner.get());
 
         return savedTopic;
     }

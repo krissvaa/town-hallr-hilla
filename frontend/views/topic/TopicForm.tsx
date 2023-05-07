@@ -5,10 +5,22 @@ import {TopicEndpoint} from "Frontend/generated/endpoints.js";
 import {TextField} from "@hilla/react-components/TextField.js";
 import {Button} from "@hilla/react-components/Button.js";
 import {TextArea} from "@hilla/react-components/TextArea";
+import {ComboBox} from "@hilla/react-components/ComboBox";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout";
+import {useEffect, useState} from "react";
+import Category from "Frontend/generated/com/example/application/data/entity/Category.js";
 
 export default function TopicForm() {
-    // const [name, setName] = useState('');
+    const [categories, setCategories] = useState(Array<Category>());
+
+    useEffect(() => {
+        (async () => {
+            setCategories(await TopicEndpoint.getCategories());
+        })();
+
+        return () => {
+        };
+    }, []);
 
     const empty: Topic = {title: '', description: '', anonymous: false, version: 0};
 
@@ -39,7 +51,15 @@ export default function TopicForm() {
 
     return (
         <>
-            <VerticalLayout className="flex p-m gap-m items-end">
+            <VerticalLayout className="topic-form flex p-m gap-m items-end">
+                <h2>Choose the topic</h2>
+                <p>What should we discuss?</p>
+                <ComboBox items={categories}
+                          name="category"
+                          label="Category"
+                    // itemLabelPath="name.toLowerCase()"
+                          itemValuePath="name"
+                          value={formik.values.category}></ComboBox>
                 <TextField
                     name="title"
                     label="Title"
