@@ -85,7 +85,8 @@
     "@vaadin/vaadin-themable-mixin": "$@vaadin/vaadin-themable-mixin",
     "@vaadin/vaadin-lumo-styles": "$@vaadin/vaadin-lumo-styles",
     "@vaadin/vaadin-material-styles": "$@vaadin/vaadin-material-styles",
-    "formik": "$formik"
+    "formik": "$formik",
+    "react-icons": "$react-icons"
   },
   "vaadin": {
     "dependencies": {
@@ -130,6 +131,6 @@
       "workbox-core": "6.5.4",
       "workbox-precaching": "6.5.4"
     },
-    "hash": "6cfe78bf0f4b1204ae79ee12cb6fc7a45cd871c446792e6411d0d37ea113c582"
+    "hash": "c71b503af9bfd57ad49b27d1e65868fc63fa46d8719b006490d90e52e6a8b111"
   }
 }

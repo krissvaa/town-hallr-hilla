@@ -1,7 +1,7 @@
 package com.example.application.security;
 
-import com.example.application.data.entity.User;
-import com.example.application.service.user.UserRepository;
+import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.application.data.entity.User;
+import com.example.application.service.user.UserRepository;
+
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -32,9 +34,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     private static List<GrantedAuthority> getAuthorities(User user) {
-        return user.getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role))
-                .toList();
-
+        return user.getRoles().stream().map(role -> (GrantedAuthority) new SimpleGrantedAuthority("ROLE_" + role)).toList();
     }
-
 }

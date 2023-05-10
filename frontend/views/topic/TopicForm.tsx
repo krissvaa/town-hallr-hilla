@@ -5,10 +5,10 @@ import {TopicEndpoint} from "Frontend/generated/endpoints.js";
 import {TextField} from "@hilla/react-components/TextField.js";
 import {Button} from "@hilla/react-components/Button.js";
 import {TextArea} from "@hilla/react-components/TextArea";
-import {ComboBox} from "@hilla/react-components/ComboBox";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout";
 import {useEffect, useState} from "react";
 import Category from "Frontend/generated/com/example/application/data/entity/Category.js";
+import {Select, SelectItem} from "@hilla/react-components/Select";
 
 export default function TopicForm() {
     const [categories, setCategories] = useState(Array<Category>());
@@ -48,18 +48,25 @@ export default function TopicForm() {
         },
     });
 
+    const mapCategorySelectItems = (categories: Category[]) => {
+        return categories.map((cat) => {
+            const selectItem: SelectItem = {};
+            const catName = Category[cat];
+            selectItem.label = catName.charAt(0).toUpperCase() + catName.slice(1).toLowerCase();
+            selectItem.value = cat;
+            return selectItem;
+        });
+    };
 
     return (
         <>
             <VerticalLayout className="topic-form flex p-m gap-m items-end">
                 <h2>Choose the topic</h2>
                 <p>What should we discuss?</p>
-                <ComboBox items={categories}
-                          name="category"
-                          label="Category"
-                    // itemLabelPath="name.toLowerCase()"
-                          itemValuePath="name"
-                          value={formik.values.category}></ComboBox>
+                <Select items={mapCategorySelectItems(categories)}
+                        name="category"
+                        label="Category"
+                        value={formik.values.category}/>
                 <TextField
                     name="title"
                     label="Title"
@@ -67,6 +74,8 @@ export default function TopicForm() {
                     onBlur={formik.handleChange}
                     errorMessage={formik.errors.title}
                     invalid={!!formik.errors.title}
+                    required={true}
+                    minlength={3}
                 />
                 <TextArea
                     name="description"
@@ -75,6 +84,8 @@ export default function TopicForm() {
                     onBlur={formik.handleChange}
                     errorMessage={formik.errors.description}
                     invalid={!!formik.errors.description}
+                    required={true}
+                    minlength={10}
                 />
                 <Button
                     theme="primary"
