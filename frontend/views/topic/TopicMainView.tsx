@@ -2,6 +2,13 @@ import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout";
 import TopicForm from "Frontend/views/topic/TopicForm.js";
 import TopicLayout from "Frontend/views/topic/TopicLayout.js";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout";
+import {TopicEndpoint} from "Frontend/generated/endpoints.js";
+
+
+export async function topicsLoader() {
+    const topics = await TopicEndpoint.getTopics();
+    return {topics};
+}
 
 export default function TopicMainView() {
 

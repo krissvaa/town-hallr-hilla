@@ -4,14 +4,19 @@ import AuthControl from 'Frontend/views/AuthControl.js';
 import LoginView from 'Frontend/views/login/LoginView.js';
 import MainLayout from 'Frontend/views/MainLayout.js';
 import {lazy} from 'react';
-import {createBrowserRouter, IndexRouteObject, NonIndexRouteObject, useMatches} from 'react-router-dom';
-import TopicMainView from "Frontend/views/topic/TopicMainView.js";
+import {createBrowserRouter, IndexRouteObject, LoaderFunction, NonIndexRouteObject, useMatches} from 'react-router-dom';
+import TopicMainView, {topicsLoader} from "Frontend/views/topic/TopicMainView.js";
+import TopicDetailsView, {topicDetailsLoader} from "Frontend/views/topic/TopicDetailsView.js";
 
 const AboutView = lazy(async () => import('Frontend/views/about/AboutView.js'));
 export type MenuProps = Readonly<{
     icon?: string;
     title?: string;
 }>;
+
+export type LoaderData<TLoaderFn extends LoaderFunction> = Awaited<ReturnType<TLoaderFn>> extends Response | infer D
+    ? D
+    : never;
 
 export type ViewMeta = Readonly<{ handle?: MenuProps & AccessProps }>;
 
@@ -43,13 +48,20 @@ export const routes: readonly ViewRouteObject[] = [
         children: [
             {
                 path: '/',
+                loader: topicsLoader,
                 element: <TopicMainView/>,
                 handle: {icon: 'globe-solid', title: 'Hello React', requiresLogin: true},
             },
             {path: '/about', element: <AboutView/>, handle: {icon: 'file', title: 'About', requiresLogin: true}},
+            {
+                path: '/topic/:topicId',
+                element: <TopicDetailsView/>,
+                loader: topicDetailsLoader,
+                handle: {icon: 'null', title: 'Topic Details', requiresLogin: true}
+            },
         ],
     },
-    {path: '/login', element: <LoginView/>, handle: {icon: 'null', title: 'Login', requiresLogin: true}},
+    {path: '/login', element: <LoginView/>, handle: {icon: 'null', title: 'Login', requiresLogin: true}}
 ];
 
 const router = createBrowserRouter([...routes]);

@@ -4,6 +4,7 @@ import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout";
 import {useEffect, useState} from "react";
 import Category from "Frontend/generated/com/example/application/data/entity/Category.js";
 import {TopicEndpoint} from "Frontend/generated/endpoints.js";
+import {FaSearch} from "react-icons/all.js";
 
 export default function TopicFilterBar() {
 
@@ -40,9 +41,9 @@ export default function TopicFilterBar() {
                        placeholder="Search topics..."
                        value={topicSearch}
                        className="w-full mr-s"
-                       prefix="<FaSearch/>"
             >
-
+                {/* @ts-ignore*/}
+                <FaSearch slot='suffix'/>
             </TextField>
             <Select name="category"
                     title="Category"

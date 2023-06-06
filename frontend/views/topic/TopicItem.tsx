@@ -1,7 +1,7 @@
 import TopicListItem from "Frontend/generated/com/example/application/data/dto/TopicListItem.js";
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout";
-import UpVoteComponent from "Frontend/views/topic/UpVoteComponent.js";
-import CommentIndicator from "Frontend/views/topic/CommentIndicator.js";
+import UpVoteComponent from "Frontend/components/topic/UpVoteComponent.js";
+import CommentIndicator from "Frontend/components/topic/CommentIndicator.js";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout";
 import Badge from "Frontend/views/common/Badge.js";
 import Status from "Frontend/generated/com/example/application/data/entity/Status.js"
@@ -28,7 +28,7 @@ export default function TopicItem({topic}: TopicItemProps) {
                 <VerticalLayout className="topic-item__content w-full">
                     <HorizontalLayout>
                         <Badge type={badgeType}>{topic.status}</Badge>
-                        <a className="m-auto ml-s" href="#">{topic.title}</a>
+                        <a className="m-auto ml-s" href={'/topic/' + topic.id || '-1'}>{topic.title}</a>
                     </HorizontalLayout>
                     <span className="topic-item-description">{topic.description}</span>
                 </VerticalLayout>

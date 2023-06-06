@@ -1,6 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d5312db4-60be-45b5-9683-2cf23616dbcb" name="Changes" comment="Layouting and styling topic main view">
+      <change afterPath="$PROJECT_DIR$/frontend/views/topic/TopicDetailsView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/topic/CommentIndicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/topic/CommentIndicator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicFilterBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/topic/TopicFilterBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/topic/TopicItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/topic/TopicLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicMainView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/topic/TopicMainView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/topic/UpVoteComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/topic/UpVoteComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/application/endpoints/topic/TopicEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/application/endpoints/topic/TopicEndpoint.java" afterDir="false" />
+    </list>
+    <list id="05143332-f68c-45e4-90f7-df6a576cb2d1" name="ignore" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/node_modules/@vaadin/select/src/vaadin-select.d.ts" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectId" id="2PPnvQvh8wpJSIV1UPRa4W7i5bM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/krissVaadin/Documents/workspace/town-hallr-hilla/frontend/views/topic",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "spring.configuration.checksum": "a8fefe23d09fe07beee50edf6e975eb9",
+    "ts.external.directory.path": "/Users/krissVaadin/Documents/workspace/town-hallr-hilla/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.rcb.reactComponents" value="false" />
+        <entry key="com.haulmont.rcb.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/views/topic" />
+      <recent name="$PROJECT_DIR$/frontend/themes" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/components/topic" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="LiferayDockerServerConfiguration" factoryName="Liferay Docker Server">
+      <option name="passParentEnvironments" value="true" />
+      <option name="workspaceLocation" value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="LiferayServerConfiguration" factoryName="Liferay Server">
+      <option name="alternativeJrePath" value="" />
+      <option name="alternativeJrePathEnabled" value="true" />
+      <option name="buildType" value="" />
+      <option name="bundleLocation" value="" />
+      <option name="developerMode" value="true" />
+      <option name="gogoShellPort" value="11311" />
+      <option name="passParentEnvironments" value="true" />
+      <option name="vmParameters" value="-Xmx2560m -XX:MaxMetaspaceSize=768m -XX:MetaspaceSize=768m" />
+      <envs>
+        <env name="PATH" value="$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-20.0.1/Contents/Home/bin:/usr/bin:/bin:/usr/sbin:/sbin" />
+        <env name="__CFBundleIdentifier" value="com.jetbrains.intellij" />
+        <env name="SHELL" value="/bin/zsh" />
+        <env name="JAVA_HOME" value="$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-20.0.1/Contents/Home" />
+        <env name="USER" value="krissVaadin" />
+        <env name="TMPDIR" value="/var/folders/wd/hw_n2jz970vcvj5_q73l92y00000gp/T/" />
+        <env name="COMMAND_MODE" value="unix2003" />
+        <env name="SSH_AUTH_SOCK" value="/private/tmp/com.apple.launchd.jmeyGNPANn/Listeners" />
+        <env name="XPC_FLAGS" value="0x0" />
+        <env name="__CF_USER_TEXT_ENCODING" value="0x1F6:0x1D:0x2D" />
+        <env name="LOGNAME" value="krissVaadin" />
+        <env name="XPC_SERVICE_NAME" value="application.com.jetbrains.intellij.11901860.11902603" />
+        <env name="HOME" value="$USER_HOME$" />
+        <env name="TOOLBOX_VERSION" value="1.28.1.15219" />
+      </envs>
+      <module name="town-hallr-hilla" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="town-hallr-hilla" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.application.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d5312db4-60be-45b5-9683-2cf23616dbcb" name="Changes" comment="" />
+      <changelist id="05143332-f68c-45e4-90f7-df6a576cb2d1" name="ignore" comment="" />
+      <created>1683367814120</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683367814120</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Layouting and styling topic main view">
+      <created>1683440681639</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683440681639</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Layouting and styling topic main view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Layouting and styling topic main view" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
   </component>
 </project>
