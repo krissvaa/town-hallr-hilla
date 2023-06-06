@@ -2,8 +2,8 @@ import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout";
 import {Link, LoaderFunctionArgs, useLoaderData, useNavigate} from "react-router-dom";
 import {TopicEndpoint} from "Frontend/generated/endpoints.js";
-import {LoaderData} from "Frontend/routes.js";
 import {FaAngleLeft} from "react-icons/all.js";
+import {LoaderData} from "Frontend/routes.js";
 
 
 export async function topicDetailsLoader({params}: LoaderFunctionArgs) {
@@ -15,7 +15,6 @@ export default function TopicDetailsView() {
     const navigate = useNavigate();
 
     const topic = useLoaderData() as LoaderData<typeof topicDetailsLoader>;
-
 
     return topic && (
         <>

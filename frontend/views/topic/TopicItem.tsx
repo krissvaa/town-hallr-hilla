@@ -5,6 +5,7 @@ import CommentIndicator from "Frontend/components/topic/CommentIndicator.js";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout";
 import Badge from "Frontend/views/common/Badge.js";
 import Status from "Frontend/generated/com/example/application/data/entity/Status.js"
+import {Link} from "react-router-dom";
 
 type TopicItemProps = { topic: TopicListItem }
 
@@ -28,7 +29,7 @@ export default function TopicItem({topic}: TopicItemProps) {
                 <VerticalLayout className="topic-item__content w-full">
                     <HorizontalLayout>
                         <Badge type={badgeType}>{topic.status}</Badge>
-                        <a className="m-auto ml-s" href={'/topic/' + topic.id || '-1'}>{topic.title}</a>
+                        <Link className="m-auto ml-s" to={'/topic/' + topic.id || '-1'}>{topic.title}</Link>
                     </HorizontalLayout>
                     <span className="topic-item-description">{topic.description}</span>
                 </VerticalLayout>

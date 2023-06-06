@@ -14,6 +14,7 @@ export type MenuProps = Readonly<{
     title?: string;
 }>;
 
+//https://github.com/remix-run/react-router/discussions/9792
 export type LoaderData<TLoaderFn extends LoaderFunction> = Awaited<ReturnType<TLoaderFn>> extends Response | infer D
     ? D
     : never;

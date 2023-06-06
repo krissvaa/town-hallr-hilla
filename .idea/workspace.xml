@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5312db4-60be-45b5-9683-2cf23616dbcb" name="Changes" comment="Layouting and styling topic main view">
-      <change afterPath="$PROJECT_DIR$/frontend/views/topic/TopicDetailsView.tsx" afterDir="false" />
+    <list default="true" id="d5312db4-60be-45b5-9683-2cf23616dbcb" name="Changes" comment="Add topic details view with React router loader&#10;Use React router loaders for topics&#10;Use slot for filter bar topic text-field to  add suffix icon">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/routes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/topic/CommentIndicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/topic/CommentIndicator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicFilterBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/topic/TopicFilterBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicDetailsView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/topic/TopicDetailsView.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/topic/TopicItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/topic/TopicLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/topic/TopicMainView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/topic/TopicMainView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/topic/UpVoteComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/topic/UpVoteComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/application/endpoints/topic/TopicEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/application/endpoints/topic/TopicEndpoint.java" afterDir="false" />
     </list>
     <list id="05143332-f68c-45e4-90f7-df6a576cb2d1" name="ignore" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,32 +58,32 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/krissVaadin/Documents/workspace/town-hallr-hilla/frontend/views/topic",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "spring.configuration.checksum": "a8fefe23d09fe07beee50edf6e975eb9",
-    "ts.external.directory.path": "/Users/krissVaadin/Documents/workspace/town-hallr-hilla/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/krissVaadin/Documents/workspace/town-hallr-hilla/frontend/views/topic&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;a8fefe23d09fe07beee50edf6e975eb9&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/krissVaadin/Documents/workspace/town-hallr-hilla/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -110,6 +105,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="LiferayDockerServerConfiguration" factoryName="Liferay Docker Server">
       <option name="passParentEnvironments" value="true" />
       <option name="workspaceLocation" value="$PROJECT_DIR$" />
@@ -125,14 +131,14 @@
       <option name="passParentEnvironments" value="true" />
       <option name="vmParameters" value="-Xmx2560m -XX:MaxMetaspaceSize=768m -XX:MetaspaceSize=768m" />
       <envs>
-        <env name="PATH" value="$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-20.0.1/Contents/Home/bin:/usr/bin:/bin:/usr/sbin:/sbin" />
+        <env name="PATH" value="$USER_HOME$/.sdkman/candidates/java/17.0.2-tem/bin:/usr/bin:/bin:/usr/sbin:/sbin" />
         <env name="__CFBundleIdentifier" value="com.jetbrains.intellij" />
         <env name="SHELL" value="/bin/zsh" />
-        <env name="JAVA_HOME" value="$USER_HOME$/Library/Java/JavaVirtualMachines/corretto-20.0.1/Contents/Home" />
+        <env name="JAVA_HOME" value="$USER_HOME$/.sdkman/candidates/java/17.0.2-tem" />
         <env name="USER" value="krissVaadin" />
         <env name="TMPDIR" value="/var/folders/wd/hw_n2jz970vcvj5_q73l92y00000gp/T/" />
         <env name="COMMAND_MODE" value="unix2003" />
-        <env name="SSH_AUTH_SOCK" value="/private/tmp/com.apple.launchd.jmeyGNPANn/Listeners" />
+        <env name="SSH_AUTH_SOCK" value="/private/tmp/com.apple.launchd.MIJqXeXn5d/Listeners" />
         <env name="XPC_FLAGS" value="0x0" />
         <env name="__CF_USER_TEXT_ENCODING" value="0x1F6:0x1D:0x2D" />
         <env name="LOGNAME" value="krissVaadin" />
@@ -142,17 +148,6 @@
       </envs>
       <module name="town-hallr-hilla" />
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="town-hallr-hilla" />
@@ -179,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683440681639</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add topic details view with React router loader&#10;Use React router loaders for topics&#10;Use slot for filter bar topic text-field to  add suffix icon">
+      <created>1686057286887</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1686057286887</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +200,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Layouting and styling topic main view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Layouting and styling topic main view" />
+    <MESSAGE value="Add topic details view with React router loader&#10;Use React router loaders for topics&#10;Use slot for filter bar topic text-field to  add suffix icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add topic details view with React router loader&#10;Use React router loaders for topics&#10;Use slot for filter bar topic text-field to  add suffix icon" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
