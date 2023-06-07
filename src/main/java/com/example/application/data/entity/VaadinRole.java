@@ -1,5 +1,5 @@
 package com.example.application.data.entity;
 
-public enum Role {
+public enum VaadinRole {
     HERD_LEADER, HERD_MEMBER
 }

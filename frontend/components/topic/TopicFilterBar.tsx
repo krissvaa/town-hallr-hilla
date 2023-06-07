@@ -3,28 +3,28 @@ import {Select, SelectItem} from "@hilla/react-components/Select";
 import {HorizontalLayout} from "@hilla/react-components/HorizontalLayout";
 import {useEffect, useState} from "react";
 import Category from "Frontend/generated/com/example/application/data/entity/Category.js";
-import {TopicEndpoint} from "Frontend/generated/endpoints.js";
 import {FaSearch} from "react-icons/all.js";
 
-export default function TopicFilterBar() {
+type TopicFilterBarProps = {
+    value: string
+}
+export default function TopicFilterBar({value: topicSearch}: TopicFilterBarProps) {
 
-    const [topicSearch, setTopicSearch] = useState('');
     const [category, setCategory] = useState('');
 
     const [categories, setCategories] = useState(Array<SelectItem>());
 
     useEffect(() => {
         (async () => {
-            const categories = await TopicEndpoint.getCategories();
-            setCategories(mapCategorySelectItems(categories));
+            setCategories(categorySelectItems());
         })();
 
         return () => {
         };
     }, []);
 
-    const mapCategorySelectItems = (categories: Category[]) => {
-        return categories.map((cat) => {
+    const categorySelectItems = () => {
+        return Object.values(Category).map((cat) => {
             const selectItem: SelectItem = {};
             const catName = Category[cat];
             selectItem.label = catName.charAt(0).toUpperCase() + catName.slice(1).toLowerCase();

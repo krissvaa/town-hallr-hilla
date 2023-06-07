@@ -5,7 +5,7 @@ import LoginView from 'Frontend/views/login/LoginView.js';
 import MainLayout from 'Frontend/views/MainLayout.js';
 import {lazy} from 'react';
 import {createBrowserRouter, IndexRouteObject, LoaderFunction, NonIndexRouteObject, useMatches} from 'react-router-dom';
-import TopicMainView, {topicsLoader} from "Frontend/views/topic/TopicMainView.js";
+import TopicMainView from "Frontend/views/topic/TopicMainView.js";
 import TopicDetailsView, {topicDetailsLoader} from "Frontend/views/topic/TopicDetailsView.js";
 
 const AboutView = lazy(async () => import('Frontend/views/about/AboutView.js'));
@@ -49,7 +49,6 @@ export const routes: readonly ViewRouteObject[] = [
         children: [
             {
                 path: '/',
-                loader: topicsLoader,
                 element: <TopicMainView/>,
                 handle: {icon: 'globe-solid', title: 'Hello React', requiresLogin: true},
             },

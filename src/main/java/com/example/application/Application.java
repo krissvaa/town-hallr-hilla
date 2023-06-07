@@ -1,12 +1,5 @@
 package com.example.application;
 
-import com.example.application.generator.DataLoader;
-import com.example.application.service.topic.TopicRepository;
-import com.example.application.service.topic.UpVoteRepository;
-import com.example.application.service.user.UserRepository;
-import com.example.application.service.user.VaadinerRepository;
-import com.vaadin.flow.component.page.AppShellConfigurator;
-import com.vaadin.flow.theme.Theme;
 import javax.sql.DataSource;
 
 import org.springframework.boot.CommandLineRunner;
@@ -16,12 +9,19 @@ import org.springframework.boot.autoconfigure.sql.init.SqlDataSourceScriptDataba
 import org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties;
 import org.springframework.context.annotation.Bean;
 
+import com.example.application.generator.DataLoader;
+import com.example.application.service.topic.TopicRepository;
+import com.example.application.service.topic.UpVoteRepository;
+import com.example.application.service.user.UserRepository;
+import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.theme.Theme;
+
+
 /**
  * The entry point of the Spring Boot application.
- *
+ * <p>
  * Use the @PWA annotation make the application installable on phones, tablets
  * and some desktop browsers.
- *
  */
 @SpringBootApplication
 @Theme(value = "town-hallr-hilla")
@@ -48,7 +48,7 @@ public class Application implements AppShellConfigurator {
 
     @Bean
     public CommandLineRunner loadData(TopicRepository topicRepository, UpVoteRepository upVoteRepository,
-            VaadinerRepository vaadinerRepository) {
-        return args -> new DataLoader(topicRepository, upVoteRepository, vaadinerRepository);
+            UserRepository userRepository) {
+        return args -> new DataLoader(topicRepository, upVoteRepository, userRepository);
     }
 }

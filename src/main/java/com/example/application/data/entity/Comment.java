@@ -2,10 +2,17 @@ package com.example.application.data.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
+
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Comment extends AbstractEntity {
 
     @ManyToOne
@@ -13,7 +20,7 @@ public class Comment extends AbstractEntity {
     private String content;
     private LocalDateTime timestamp;
     @ManyToOne
-    private Vaadiner commenter;
+    private User commenter;
 
     public Topic getTopic() {
         return topic;
@@ -39,11 +46,11 @@ public class Comment extends AbstractEntity {
         this.timestamp = timestamp;
     }
 
-    public Vaadiner getCommenter() {
+    public User getCommenter() {
         return commenter;
     }
 
-    public void setCommenter(Vaadiner commenter) {
+    public void setCommenter(User commenter) {
         this.commenter = commenter;
     }
 }

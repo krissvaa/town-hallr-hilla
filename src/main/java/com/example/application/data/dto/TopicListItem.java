@@ -2,7 +2,7 @@ package com.example.application.data.dto;
 
 import com.example.application.data.entity.Category;
 import com.example.application.data.entity.Status;
-import com.example.application.data.entity.Vaadiner;
+import com.example.application.data.entity.User;
 
 
 public class TopicListItem {
@@ -13,7 +13,7 @@ public class TopicListItem {
     private int commentCount;
     private Category category;
     private Status status;
-    private Vaadiner answerer;
+    private User answerer;
 
     public int getUpvoteCount() {
         return upvoteCount;
@@ -71,11 +71,11 @@ public class TopicListItem {
         this.status = status;
     }
 
-    public Vaadiner getAnswerer() {
+    public User getAnswerer() {
         return answerer;
     }
 
-    public void setAnswerer(Vaadiner answerer) {
+    public void setAnswerer(User answerer) {
         this.answerer = answerer;
     }
 }

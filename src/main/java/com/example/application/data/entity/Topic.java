@@ -2,6 +2,9 @@ package com.example.application.data.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,7 +13,11 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
+
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Topic extends AbstractEntity {
     private String title;
     private String description;
@@ -18,14 +25,14 @@ public class Topic extends AbstractEntity {
     private Category category;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
     private List<UpVote> upVotes;
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
     private List<Comment> comments;
     @ManyToOne
-    private Vaadiner submitter;
+    private User submitter;
     @ManyToOne
-    private Vaadiner answerer;
+    private User answerer;
 
     private boolean anonymous = true;
 
@@ -77,19 +84,19 @@ public class Topic extends AbstractEntity {
         this.comments = comments;
     }
 
-    public Vaadiner getAnswerer() {
+    public User getAnswerer() {
         return answerer;
     }
 
-    public void setAnswerer(Vaadiner answerer) {
+    public void setAnswerer(User answerer) {
         this.answerer = answerer;
     }
 
-    public Vaadiner getSubmitter() {
+    public User getSubmitter() {
         return submitter;
     }
 
-    public void setSubmitter(Vaadiner submitter) {
+    public void setSubmitter(User submitter) {
         this.submitter = submitter;
     }
 

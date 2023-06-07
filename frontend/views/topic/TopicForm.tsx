@@ -6,11 +6,16 @@ import {TextField} from "@hilla/react-components/TextField.js";
 import {Button} from "@hilla/react-components/Button.js";
 import {TextArea} from "@hilla/react-components/TextArea";
 import {VerticalLayout} from "@hilla/react-components/VerticalLayout";
-import {useEffect, useState} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import Category from "Frontend/generated/com/example/application/data/entity/Category.js";
 import {Select, SelectItem} from "@hilla/react-components/Select";
+import TopicListItem from "Frontend/generated/com/example/application/data/dto/TopicListItem.js";
 
-export default function TopicForm() {
+type TopicFormProps = {
+    topics: Array<TopicListItem>,
+    setTopics: Dispatch<SetStateAction<TopicListItem[]>>
+}
+export default function TopicForm({topics, setTopics}: TopicFormProps) {
     const [categories, setCategories] = useState(Array<Category>());
 
     useEffect(() => {
@@ -28,9 +33,12 @@ export default function TopicForm() {
         initialValues: empty,
         onSubmit: async (value: Topic, {setSubmitting, setErrors}) => {
             try {
-                const saved = await TopicEndpoint.createTopic(value) ?? value;
-                // setTopic([...topics, saved]);
+                console.log("starting to submit a topic")
+                const newTopic = await TopicEndpoint.createTopic(value);
+                setTopics([...topics, newTopic!])
                 formik.resetForm();
+
+                console.log("ending a submitition of a topic")
             } catch (e: unknown) {
                 if (e instanceof EndpointValidationError) {
                     const errors: FormikErrors<Topic> = {}
@@ -66,7 +74,10 @@ export default function TopicForm() {
                 <Select items={mapCategorySelectItems(categories)}
                         name="category"
                         label="Category"
-                        value={formik.values.category}/>
+                        value={formik.values.category}
+                        onChange={formik.handleChange}
+                        errorMessage={formik.errors.category}
+                        invalid={!!formik.errors.category}/>
                 <TextField
                     name="title"
                     label="Title"

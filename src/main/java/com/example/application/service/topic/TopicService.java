@@ -1,38 +1,48 @@
 package com.example.application.service.topic;
 
-import com.example.application.data.dto.TopicListItem;
-import com.example.application.data.entity.*;
-import com.example.application.service.user.VaadinerRepository;
-import com.vaadin.flow.server.VaadinRequest;
-import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import com.example.application.data.dto.TopicListItem;
+import com.example.application.data.entity.Category;
+import com.example.application.data.entity.Comment;
+import com.example.application.data.entity.Status;
+import com.example.application.data.entity.Topic;
+import com.example.application.data.entity.UpVote;
+import com.example.application.data.entity.User;
+import com.example.application.security.AuthenticatedUser;
+import com.example.application.service.user.UserRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+
 
 @Service
 @Transactional
 public class TopicService {
     private static final int MAX_VOTES = 5;
     private final TopicRepository topicRepository;
-    private final VaadinerRepository vaadinerRepository;
+    private AuthenticatedUser authenticatedUser;
+    private UserRepository userRepository;
     private final UpVoteRepository upVoteRepository;
     private final CommentRepository commentRepository;
 
-
     @Autowired
     public TopicService(TopicRepository topicRepository,
-                        VaadinerRepository vaadinerRepository,
-                        UpVoteRepository upVoteRepository,
-                        CommentRepository commentRepository) {
+            UpVoteRepository upVoteRepository,
+            CommentRepository commentRepository,
+            AuthenticatedUser authenticatedUser,
+            UserRepository userRepository) {
         this.topicRepository = topicRepository;
-        this.vaadinerRepository = vaadinerRepository;
         this.upVoteRepository = upVoteRepository;
         this.commentRepository = commentRepository;
+        this.authenticatedUser = authenticatedUser;
+        this.userRepository = userRepository;
     }
 
     public List<Topic> listAll() {
@@ -65,10 +75,12 @@ public class TopicService {
     private TopicListItem topicEntityToListItem(Topic topic) {
         var topicListItem = new TopicListItem();
         topicListItem.setId(topic.getId());
-        topicListItem.setUpvoteCount(topic.getUpVotes().size());
+        topicListItem.setUpvoteCount(topic.getUpVotes() != null ?
+                topic.getUpVotes().size() : 0);
         topicListItem.setTitle(topic.getTitle());
         topicListItem.setDescription(topic.getDescription());
-        topicListItem.setCommentCount(topic.getComments().size());
+        topicListItem.setCommentCount(topic.getUpVotes() != null ?
+                topic.getComments().size() : 0);
         topicListItem.setStatus(topic.getStatus());
         topicListItem.setCategory(topic.getCategory());
         topicListItem.setAnswerer(topic.getAnswerer());
@@ -76,7 +88,7 @@ public class TopicService {
     }
 
     public Topic save(Topic topic) {
-        topic.setSubmitter(getCurrentVaadiner());
+        topic.setSubmitter(getCurrentUser());
         return topicRepository.save(topic);
     }
 
@@ -84,27 +96,30 @@ public class TopicService {
         topicRepository.delete(topic);
     }
 
-    public Topic submitNew(Topic topic, Vaadiner submitter) {
-        // refresh the Vaadiner from the DB
-        Optional<Vaadiner> optionalVaadiner = vaadinerRepository.findById(submitter.getId());
-        if (optionalVaadiner.isEmpty()) {
-            throw new EntityNotFoundException("Vaadiner not found");
+    public TopicListItem submitNew(Topic topic) {
+        final User submitter = getCurrentUser();
+        // refresh the User from the DB
+        Optional<User> refreshedUser = userRepository.findById(submitter.getId());
+        if (refreshedUser.isEmpty()) {
+            throw new EntityNotFoundException("User not found");
         }
 
         topic.setStatus(Status.NEW);
-        topic.setSubmitter(optionalVaadiner.get());
+        topic.setSubmitter(refreshedUser.get());
 
         // save the topic
         Topic savedTopic = save(topic);
 
-        // update Vaadiner
-        optionalVaadiner.get().getSubmittedTopics().add(savedTopic);
-        vaadinerRepository.save(optionalVaadiner.get());
+        // update User
+        refreshedUser.get().getSubmittedTopics().add(savedTopic);
+        userRepository.save(refreshedUser.get());
 
-        return savedTopic;
+        return topicEntityToListItem(savedTopic);
     }
 
-    public Topic upvote(Topic topic, Vaadiner voter) {
+    public Topic upvote(Topic topic) {
+        final User voter = getCurrentUser();
+
         // create a new vote
         UpVote upVote = new UpVote();
         upVote.setTimestamp(LocalDate.now());
@@ -116,26 +131,25 @@ public class TopicService {
             Topic topicToBeSaved = byId.get();
             topicToBeSaved.getUpVotes().add(upVote);
 
-            // refresh the Vaadiner from the DB
-            Vaadiner refreshedVaadiner = null;
-            Optional<Vaadiner> optionalVaadiner = vaadinerRepository.findById(voter.getId());
-            if (optionalVaadiner.isPresent()) {
-                refreshedVaadiner = optionalVaadiner.get();
-                if (refreshedVaadiner.getUpVotes().size() == MAX_VOTES) {
+            // refresh the User from the DB
+            final User refreshedUser;
+            Optional<User> optionalUser = userRepository.findById(voter.getId());
+            if (optionalUser.isPresent()) {
+                refreshedUser = optionalUser.get();
+                if (refreshedUser.getUpVotes().size() == MAX_VOTES) {
                     throw new IllegalArgumentException("All votes already used");
                 }
-
             } else {
-                throw new EntityNotFoundException("Vaadiner not found");
+                throw new EntityNotFoundException("User not found");
             }
 
             // save the vote
             upVote.setTopic(topicToBeSaved);
             UpVote savedVote = upVoteRepository.save(upVote);
 
-            // update Vaadiner
-            refreshedVaadiner.getUpVotes().add(savedVote);
-            vaadinerRepository.save(refreshedVaadiner);
+            // update User
+            refreshedUser.getUpVotes().add(savedVote);
+            userRepository.save(refreshedUser);
 
             // update the topic
             return save(topicToBeSaved);
@@ -144,19 +158,13 @@ public class TopicService {
         }
     }
 
-    public Topic assign(TopicListItem topic, Vaadiner vaadiner) {
-        // refresh the Vaadiner from the DB
-        Optional<Vaadiner> optionalVaadiner = vaadinerRepository.findById(vaadiner.getId());
-        if (optionalVaadiner.isEmpty()) {
-            throw new EntityNotFoundException("Vaadiner not found");
-        }
-
+    public Topic assign(TopicListItem topic, User assignee) {
         // refresh the topic from the DB
         Optional<Topic> byId = topicRepository.findById(topic.getId());
         if (byId.isPresent()) {
             Topic topicToBeSaved = byId.get();
             topicToBeSaved.setStatus(Status.ASSIGNED);
-            topicToBeSaved.setAnswerer(optionalVaadiner.get());
+            topicToBeSaved.setAnswerer(assignee);
 
             // update the topic
             return save(topicToBeSaved);
@@ -180,14 +188,20 @@ public class TopicService {
     }
 
     public Topic getTopicById(Long id) {
-        return topicRepository.findById(id).orElse(null);
+        return topicRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No Topic found with id: " + id));
+    }
+
+    public TopicListItem getTopicItemById(Long id) {
+        final Topic topic = getTopicById(id);
+        return topicEntityToListItem(topic);
     }
 
     public UpVote saveUpVote(Long topicId) {
         Topic topic = getTopicById(topicId);
         UpVote upVote = new UpVote();
         upVote.setTopic(topic);
-        upVote.setVoter(getCurrentVaadiner());
+        upVote.setVoter(getCurrentUser());
 
         UpVote saved = upVoteRepository.save(upVote);
         topic.getUpVotes().add(saved);
@@ -204,20 +218,14 @@ public class TopicService {
 
     public UpVote getUpVote(Long topicId) {
         Topic topic = getTopicById(topicId);
-
         UpVote upVote = new UpVote();
         upVote.setTopic(topic);
-        upVote.setVoter(getCurrentVaadiner());
+        upVote.setVoter(getCurrentUser());
         return upVoteRepository.findOne(Example.of(upVote)).orElse(null);
     }
 
-    //TODO move to correct Service
-    public Vaadiner getCurrentVaadiner() {
-        String extRefId = VaadinRequest.getCurrent().getUserPrincipal().getName();
-        Vaadiner vaadiner = new Vaadiner();
-        vaadiner.setExtReferenceId(extRefId);
-        return vaadinerRepository.findOne(Example.of(vaadiner)).orElseThrow(() ->
-                new IllegalStateException("No user found"));
+    public User getCurrentUser() {
+        return authenticatedUser.get().orElseThrow(() -> new IllegalStateException("No user auth"));
     }
 
     public List<Comment> getCommentsForTopic(Long topicId) {
@@ -232,5 +240,4 @@ public class TopicService {
         save(topic);
         return commentId;
     }
-
 }

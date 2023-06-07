@@ -2,10 +2,15 @@ package com.example.application.data.entity;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
+
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class UpVote extends AbstractEntity {
 
     private LocalDate timestamp;
@@ -13,7 +18,7 @@ public class UpVote extends AbstractEntity {
     @ManyToOne
     private Topic topic;
     @ManyToOne
-    private Vaadiner voter;
+    private User voter;
 
     public LocalDate getTimestamp() {
         return timestamp;
@@ -31,11 +36,11 @@ public class UpVote extends AbstractEntity {
         this.topic = topic;
     }
 
-    public Vaadiner getVoter() {
+    public User getVoter() {
         return voter;
     }
 
-    public void setVoter(Vaadiner voter) {
+    public void setVoter(User voter) {
         this.voter = voter;
     }
 }
